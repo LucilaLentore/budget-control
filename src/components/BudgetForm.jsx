@@ -1,4 +1,4 @@
-const BudgetForm = () => {
+const BudgetForm = ({ budget, setBudget }) => {
   return (
     <div className="contenedor-presupuesto contenedor sombra">
       <form className="formulario">
@@ -10,6 +10,8 @@ const BudgetForm = () => {
             className="nuevo-presupuesto"
             type="text"
             placeholder="Añadí tu presupuesto"
+            value={budget}
+            onChange={ (e) => setBudget(e.target.value)}
           />
         </div>
         <input

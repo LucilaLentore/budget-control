@@ -1,10 +1,13 @@
 import BudgetForm from "./BudgetForm";
 
-const Header = () => {
+const Header = ({ budget, setBudget }) => {
   return(
     <header>
       <h1>Planificador de gastos</h1>
-      <BudgetForm />
+      <BudgetForm
+        budget={budget}
+        setBudget={setBudget}
+      />
     </header>
   );
 };

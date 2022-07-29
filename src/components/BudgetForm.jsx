@@ -1,14 +1,19 @@
 import { useState } from 'react';
 import Message from './Message';
 
-const BudgetForm = ({ budget, setBudget }) => {
+const BudgetForm = ({ budget, setBudget, isBudgetValid, setIsBudgetValid }) => {
   const [message, setMessage] = useState('');
 
   const validateBudget = (e) => {
     e.preventDefault();
-    if(!Number(budget) || Number(budget) < 0) {
+  
+    if(!budget || budget < 0) {
       setMessage('No es un presupuesto válido')
+      return;
     }
+  
+    setMessage('');
+    setIsBudgetValid(true);
   };
 
   return (
@@ -23,7 +28,7 @@ const BudgetForm = ({ budget, setBudget }) => {
             type="text"
             placeholder="Añadí tu presupuesto"
             value={budget}
-            onChange={ (e) => setBudget(e.target.value)}
+            onChange={ (e) => setBudget(Number(e.target.value))}
           />
         </div>
         <input

@@ -1,7 +1,19 @@
+import { useState } from 'react';
+import Message from './Message';
+
 const BudgetForm = ({ budget, setBudget }) => {
+  const [message, setMessage] = useState('');
+
+  const validateBudget = (e) => {
+    e.preventDefault();
+    if(!Number(budget) || Number(budget) < 0) {
+      setMessage('No es un presupuesto válido')
+    }
+  };
+
   return (
     <div className="contenedor-presupuesto contenedor sombra">
-      <form className="formulario">
+      <form onSubmit={validateBudget} className="formulario">
         <div className="campo">
           <label>
             Definir presupuesto
@@ -18,6 +30,7 @@ const BudgetForm = ({ budget, setBudget }) => {
           type="submit"
           value="Añadir"
         />
+        {message && <Message type="error" >{message}</Message>}
       </form>
     </div>
   );
